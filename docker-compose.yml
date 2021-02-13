@@ -28,7 +28,7 @@ services:
       - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
     networks:
       - app-network
-   db:
+  db:
     image: mysql:latest
     container_name: db
     restart: unless-stopped
