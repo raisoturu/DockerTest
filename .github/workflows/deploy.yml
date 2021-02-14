@@ -33,3 +33,4 @@ jobs:
           script: |
             cd ~/git/laravel/
             docker-compose -f "docker-compose.prod.yml" up -d
+            docker run --rm -v "$(pwd):/app" composer install
