@@ -1,5 +1,6 @@
 FROM php:7.4-fpm
-
+ARG user=ketty
+ARG uid=1001
 COPY composer.lock composer.json /var/www/
 
 WORKDIR /var/www
@@ -27,17 +28,14 @@ RUN docker-php-ext-install gd pdo_mysql
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Add user for laravel application
-RUN groupadd -g 1001 www
-RUN useradd -u 1001 -ms /bin/bash -g www www
 
 # Copy existing application directory contents
 COPY . /var/www
 
-# Copy existing application directory permissions
-COPY --chown=www:www . /var/www
-# RUN chown -R www:www /var/www
-# RUN chmod -R 755 /var/www/storage
+RUN useradd -G www-data,root -u $uid -d /home/$user $user
+RUN mkdir -p /home/$user/.composer && \
+    chown -R $user:$user /home/$user
+
 
 # Change current user to www
 USER www
