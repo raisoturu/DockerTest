@@ -32,5 +32,6 @@ jobs:
           KEY: ${{ secrets.SSHKEY }}
           script: |
             cd ~/git/laravel/
+            chown -R root:root .
             docker-compose -f "docker-compose.prod.yml" up -d
             docker run --rm -v "$(pwd):/app" composer install
