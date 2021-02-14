@@ -34,3 +34,4 @@ jobs:
             cd ~/git/laravel/
             docker-compose -f "docker-compose.prod.yml" up -d
             docker run --rm -v "$(pwd):/app" composer install
+            chown -R www:www ~/git/laravel/
