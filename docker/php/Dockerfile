@@ -34,17 +34,11 @@ RUN useradd -u 1000 -ms /bin/bash -g www www
 # Copy existing application directory contents
 COPY . /var/www
 
-# Install packages
-RUN composer install
-
 # Copy existing application directory permissions
 COPY --chown=www:www . /var/www
 
 # Change current user to www
 USER www
-
-RUN cp .env.example .env
-RUN php artisan key:generate
 
 # Expose port 9000 and start php-fpm server
 EXPOSE 9000
