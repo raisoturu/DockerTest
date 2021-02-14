@@ -1,6 +1,6 @@
 FROM php:7.4-fpm
 ARG user=ketty
-ARG uid=1001
+ARG uid=1000
 COPY composer.lock composer.json /var/www/
 
 WORKDIR /var/www
