@@ -36,7 +36,7 @@ COPY . /var/www
 
 # Copy existing application directory permissions
 # COPY --chown=www:www . /var/www
-RUN chown -R $USER:www /var/www
+RUN chown -R www:www /var/www
 # RUN chmod -R 755 /var/www/storage
 
 # Change current user to www
